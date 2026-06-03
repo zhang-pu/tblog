@@ -22,7 +22,8 @@ function get_category_by_id($id) {
     $stmt = $db->prepare("SELECT * FROM categories WHERE id = ?");
     $stmt->bind_param('i', $id);
     $stmt->execute();
-    return $stmt->get_result()->fetch_assoc();
+    $row = $stmt->get_result()->fetch_assoc();
+    return $row ?? [];
 }
 
 function create_category($data) {

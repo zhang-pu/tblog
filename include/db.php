@@ -3,6 +3,9 @@
  * Database Connection
  */
 
+// TBlog 版本常量
+define('TBLOG_VERSION', '1.2.1');
+
 function get_db() {
     static $db = null;
     if ($db === null) {

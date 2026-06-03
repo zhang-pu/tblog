@@ -39,14 +39,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = '<div class="error">标题和内容不能为空</div>';
     } else {
         // Check slug uniqueness (only if slug changed or new post)
-        $existing = null;
+        $existing = [];
         if (!empty($_POST['id'])) {
-            $existing = get_post_by_id(intval($_POST['id']));
+            $existing = get_post_by_id(intval($_POST['id'])) ?? [];
         }
         $slug_check = $data['slug'];
         $db = get_db();
+        $exclude_id = $existing['id'] ?? 0;
         $stmt = $db->prepare("SELECT id FROM posts WHERE slug = ? AND deleted_at IS NULL AND id != ?");
-        $stmt->bind_param('si', $slug_check, $existing['id'] ?? 0);
+        $stmt->bind_param('si', $slug_check, $exclude_id);
         $stmt->execute();
         $res = $stmt->get_result();
         if ($res->num_rows > 0) {
@@ -64,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if (!empty($_GET['edit'])) {
-    $edit_post = get_post_by_id(intval($_GET['edit']));
+    $edit_post = get_post_by_id(intval($_GET['edit'])) ?? [];
 }
 
 if (!empty($_GET['delete'])) {

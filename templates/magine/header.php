@@ -6,8 +6,8 @@ require_once __DIR__ . '/../../config.php';
 require_once INCLUDE_PATH . 'function.common.php';
 require_once INCLUDE_PATH . 'function.category.php';
 
-$site_name = get_setting('site_name', 'TBlog');
-$site_description = get_setting('site_description', '一个简洁优雅的开源博客系统');
+$site_name = get_setting('site_name', '张璞博客');
+$site_description = get_setting('site_description', '一个简洁优雅的博客');
 $categories = get_categories();
 ?>
 <!DOCTYPE html>

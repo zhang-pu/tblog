@@ -4,7 +4,31 @@
 
 ---
 
-## [v1.2.0] - 2024-05-31
+## [v1.2.1] - 2026-06-03
+
+### 🐛 Bug 修复
+
+- ✅ 修复发布/编辑文章时 `mysqli_stmt::bind_param(): Argument #3 cannot be passed by reference` 致命错误
+  - 原因：`bind_param()` 第三个参数传入了表达式 `$existing['id'] ?? 0`，PHP 7.4+ 不允许以引用方式传递表达式
+  - 修复：先赋值到变量 `$exclude_id`，再传给 `bind_param()`
+- ✅ 修复 `get_post_by_id()` 在 ID 不存在时返回 `null`，后续 `$post['xxx']` 触发 PHP 8 warning
+  - 修复：找不到记录时返回空数组 `[]`
+- ✅ 修复 `get_category_by_id()` 同上问题
+- ✅ 修复 `admin/post.php` 编辑文章时 `$edit_post` 未做 null 防御
+- ✅ 修复 `admin/category.php` 编辑分类时 `$edit_category` 未做 null 防御
+
+### ✨ 新增
+
+- ✅ 新增 `TBLOG_VERSION` 常量（`include/db.php`），统一版本号管理
+- ✅ 管理后台「系统信息」页面新增 TBlog 版本显示
+
+### 🔧 改进
+
+- 防御性编程：`fetch_assoc()` 返回 null 时统一改为返回 `[]`，避免上层调用链产生 warning
+
+---
+
+## [v1.2.0] - 2026-05-31
 
 ### 定时任务 + 远程备份
 
@@ -34,13 +58,25 @@
 
 ---
 
-## 待办
+## 升级说明
 
-- [ ] 多 PHP 版本切换
-- [ ] Node.js 支持
-- [ ] nginx 日志查看器
-- [ ] 插件系统
+### 从 v1.2.0 升级到 v1.2.1
+
+无破坏性改动，直接覆盖 PHP 文件即可：
+
+```bash
+# 备份
+cp -r /www/wwwroot/your-blog /path/to/backup/your-blog.v1.2.0
+
+# 上传新文件覆盖（保留 config.php）
+unzip -o TBlog_v1.2.1.zip -d /www/wwwroot/your-blog/
+
+# 修复权限
+chown -R www:www /www/wwwroot/your-blog
+```
+
+无需执行 SQL 迁移。
 
 ---
 
-> 关注 GitHub 仓库获取最新更新：https://github.com/tblog-cn/tblog
+> 关注 GitHub 仓库获取最新更新：https://github.com/zhang-pu/tblog

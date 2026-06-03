@@ -81,7 +81,8 @@ function get_post_by_id($id) {
     $stmt = $db->prepare("SELECT * FROM posts WHERE id = ?");
     $stmt->bind_param('i', $id);
     $stmt->execute();
-    return $stmt->get_result()->fetch_assoc();
+    $row = $stmt->get_result()->fetch_assoc();
+    return $row ?? [];
 }
 
 function create_post($data) {

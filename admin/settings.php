@@ -131,6 +131,10 @@ $admin_user = get_admin_user();
             <h2 style="margin-top: 40px;">系统信息</h2>
             <table class="table">
                 <tr>
+                    <td>TBlog 版本</td>
+                    <td><?php echo TBLOG_VERSION; ?></td>
+                </tr>
+                <tr>
                     <td>PHP 版本</td>
                     <td><?php echo PHP_VERSION; ?></td>
                 </tr>

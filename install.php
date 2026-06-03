@@ -1,6 +1,6 @@
 <?php
 /**
- * TBlog - Installation Wizard
+ * ZhangPu Blog - Installation Wizard
  */
 session_start();
 
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 2) {
 if ($step === 3) {
     $config_content = "<?php
 /**
- * TBlog - Configuration
+ * ZhangPu Blog - Configuration
  */
 define('DB_HOST', '{$_SESSION['db_host']}');
 define('DB_PORT', {$_SESSION['db_port']});
@@ -100,7 +100,7 @@ if ($step === 5) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>安装向导 - TBlog</title>
+    <title>安装向导 - ZhangPu Blog</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -293,7 +293,7 @@ if ($step === 5) {
 <body>
     <div class="installer">
         <div class="installer-header">
-            <h1>🌿 TBlog 安装向导</h1>
+            <h1>🌿 ZhangPu Blog 安装向导</h1>
             <p>一个简洁优雅的博客系统</p>
             <div class="progress-bar">
                 <div class="progress-step <?php echo $step >= 1 ? 'completed' : ''; ?>" data-step="1"></div>
@@ -370,7 +370,7 @@ if ($step === 5) {
 
                 <div class="form-group">
                     <label for="db_name">数据库名称</label>
-                    <input type="text" name="db_name" id="db_name" value="<?php echo e($_SESSION['db_name'] ?? 'tblog'); ?>" required>
+                    <input type="text" name="db_name" id="db_name" value="<?php echo e($_SESSION['db_name'] ?? 'zhangpu_blog'); ?>" required>
                 </div>
 
                 <div class="buttons">
@@ -396,7 +396,7 @@ if ($step === 5) {
             <?php elseif ($step === 4): ?>
             <h2>第四步：安装完成</h2>
 
-            <div class="success">🎉 恭喜！TBlog 已安装成功！</div>
+            <div class="success">🎉 恭喜！ZhangPu Blog 已安装成功！</div>
 
             <div class="features">
                 <strong>默认管理员信息：</strong>
@@ -418,7 +418,7 @@ if ($step === 5) {
             <?php elseif ($step === 5): ?>
             <div class="text-center">
                 <h2>🎉 安装完成！</h2>
-                <p class="mt-4">感谢使用 TBlog</p>
+                <p class="mt-4">感谢使用 ZhangPu Blog</p>
             </div>
 
             <div class="buttons" style="justify-content: center; margin-top: 30px;">

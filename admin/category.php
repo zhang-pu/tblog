@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Load category for editing
 if (!empty($_GET['edit'])) {
-    $edit_category = get_category_by_id(intval($_GET['edit']));
+    $edit_category = get_category_by_id(intval($_GET['edit'])) ?? [];
 }
 
 // Handle delete
